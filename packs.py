@@ -4,7 +4,7 @@
 
 Sources (git-ignored, see CREDITS.md for where each comes from):
   sources/NAM_models-main  github.com/pelennor2170/NAM_models (GPL v3)
-  sources/cabs/<name>.wav  cab IRs (CC0 / CC BY / CC BY-SA), named as they appear in Backline
+  sources/raw              the cab IR downloads; cabs.py turns them into sources/cabs/<name as in Backline>.wav
 Models get NAM loudness metadata (tools/loudness), so Backline levels them like the NAM plugin does.
 """
 import argparse
@@ -51,9 +51,9 @@ ESSENTIALS = {
     'Roman A LT_MESA_MARKIV_1.nam': 'Mesa Mark IV Lead',
     'Helga B 5150 BlockLetter - Boosted.nam': 'Peavey 5150 High Gain',
 }
-ESSENTIAL_CABS = ['Bristol Two-Cab Blend', 'Marshall 1960B 4x12 (Zach Weeks)', 'Behringer BG412S V30 Even']
+ESSENTIAL_CABS = ['EV TL806 1x12 Summed (Zach Weeks)', 'Marshall 1960B 4x12 (Zach Weeks)', 'Behringer BG412S V30 Even']
 PAIRS = {  # amp-only captures -> the cab they're set up with on install (pairs.json)
-    'Fender Twin Reverb Clean': 'Bristol Two-Cab Blend', 'Vox AC15 Top Boost': 'Bristol Two-Cab Blend',
+    'Fender Twin Reverb Clean': 'EV TL806 1x12 Summed (Zach Weeks)', 'Vox AC15 Top Boost': 'EV TL806 1x12 Summed (Zach Weeks)',
     'Marshall JCM2000 Crunch': 'Marshall 1960B 4x12 (Zach Weeks)', 'Mesa Mark IV Lead': 'Behringer BG412S V30 Even',
     'Peavey 5150 High Gain': 'Behringer BG412S V30 Even',
 }
@@ -125,7 +125,8 @@ if __name__ == '__main__':
     a.add_argument('--url', default='https://github.com/gtemple/backline-sounds/releases/download/v1')
     args = a.parse_args()
     authors = 'George B, Helga B, Luis R, Mikhail K, Phillipe P, Roman A, Sascha S, Tim R, Tom C and Tudor N'
-    credit = f'Amp captures by {authors} from the NAM community collection (GPL v3)'
+    credit = (f'Amp captures by {authors} from the NAM community collection (GPL v3). Cab IRs by Zach Weeks (CC BY-SA 4.0), '
+              'jesterdyne, tosha73, unfa (CC0) and mansardian (CC BY 4.0) via Freesound.')
     all_cabs = sorted(p.stem for p in CABS.glob('*.wav')) if CABS.exists() else []
     stage(ROOT / 'build/guitar-essentials', ESSENTIALS, ESSENTIAL_CABS)
     stage(ROOT / 'build/guitar-encore', encore_names(), [c for c in all_cabs if c not in ESSENTIAL_CABS])
