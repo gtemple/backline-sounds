@@ -2,6 +2,10 @@
 
 Backline's sound packs are free and only contain sounds whose licences allow sharing them.
 
+Amplifier, cabinet, instrument and drum brand names in sound names (Marshall, Fender, Mesa, Peavey, Pearl, Ludwig and
+others) are trademarks of their owners. They only describe the gear that was captured or sampled; neither Backline nor
+these packs are affiliated with or endorsed by them.
+
 ## Amp captures (Guitar Essentials, Guitar Encore)
 
 Neural Amp Modeler captures by George B, Helga B, Luis R, Mikhail K, Phillipe P, Roman A, Sascha S, Tim R, Tom C and
