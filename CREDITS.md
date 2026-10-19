@@ -26,7 +26,7 @@ All converted to 48 kHz mono 24-bit and trimmed (cabs.py).
 ## Keys (Keys Essentials, Keys Encore)
 
 All converted by keys_samples.py: one sample per recorded note and velocity layer, cut once decayed 60 dB (at most 10 s),
-16-bit FLAC; release and loop data dropped.
+16-bit FLAC, levelled to peak at -10 dBFS; release and loop data dropped.
 
 - Concert Grand: Salamander Grand Piano V3 by Alexander Holm, via FreePats
   (https://freepats.zenvoid.org/Piano/acoustic-grand-piano.html). CC BY 3.0
@@ -37,5 +37,17 @@ All converted by keys_samples.py: one sample per recorded note and velocity laye
 - Stage 73 Electric Piano: jRhodes3d (mono, no crossfade) by Jeff Learman
   (https://github.com/sfzinstruments/jlearman.jRhodes3d). CC BY-NC 4.0
   (https://creativecommons.org/licenses/by-nc/4.0/): free to share, not for commercial use.
+
+## Drum kits (Drums Essentials, Drums Encore)
+
+Converted by drums_samples.py: each kit's sounds mapped onto Backline's pads, the first round-robin take of each
+velocity layer kept, each piece set to a standard mix level, cut once decayed 60 dB (at most 10 s), 16-bit FLAC.
+
+- Muldjord Kit by Lars Muldjord (DrumGizmo), stereo SFZ version via FreePats
+  (https://freepats.zenvoid.org/Percussion/acoustic-drum-kit.html). CC BY 4.0
+  (https://creativecommons.org/licenses/by/4.0/).
+- Black Pearl, Red Zeppelin, Blonde Bop and Buskman's Holiday: AVL Drumkits by Glen MacArthur
+  (https://www.bandshed.net/avldrumkits/). CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/); the
+  converted files are shared under the same licence. The single rack tom plays both tom pads.
 
 tools/loudness_input.wav is from Neural Amp Modeler (https://github.com/sdatkinson/neural-amp-modeler, MIT).

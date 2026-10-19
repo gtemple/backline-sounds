@@ -1,12 +1,14 @@
 """Keys instruments for the packs, from the SFZ sample sets in sources/keys (see CREDITS.md), into
 build/<pack>/<keys|piano>/...: <midi>-<layer>.flac per recorded note and velocity layer (1 = softest), the format
 Source/MidiInstrument.h loads. Samples are cut once they've decayed 60 dB (at most 10 s) to keep them small in memory.
-Release, round-robin and keyswitch regions are left out. Needs soundfile and numpy (~/.cache/bl/venv).
+Release, round-robin and keyswitch regions are left out. Each instrument is scaled so its loudest sample peaks at
+PEAK dBFS, leaving headroom for chords. Needs soundfile and numpy (~/.cache/bl/venv).
 """
 import pathlib
 import re
 import sys
 
+import numpy as np
 import soundfile as sf
 
 sys.path.insert(0, '/mnt/c/dev/backline/tools')
@@ -14,6 +16,7 @@ from piano_samples import build as salamander, trim  # noqa: E402
 
 ROOT = pathlib.Path(__file__).parent
 SRC = ROOT / 'sources/keys'
+PEAK = -10
 NOTES = {'c': 0, 'd': 2, 'e': 4, 'f': 5, 'g': 7, 'a': 9, 'b': 11}
 
 
@@ -64,12 +67,22 @@ INSTRUMENTS = {  # Backline name -> SFZ
 }
 
 
+def level(folder):
+    files = sorted(folder.glob('*.flac'))
+    gain = 10 ** (PEAK / 20) / max(np.abs(sf.read(f)[0]).max() for f in files)
+    for f in files:
+        x, rate = sf.read(f)
+        sf.write(f, x * gain, rate, subtype='PCM_16')
+
+
 def stage(build):
     n = salamander(SRC / 'SalamanderGrandPiano-SFZ+FLAC-V3+20200602/samples', build / 'keys-essentials/piano')
     (build / 'keys-essentials/piano/CREDITS.txt').unlink()
+    level(build / 'keys-essentials/piano')
     print(f'Concert Grand: {n} samples')
     for name, sfz in INSTRUMENTS.items():
         print(f'{name}: {convert(SRC / sfz, build / "keys-encore/keys" / name)} samples')
+        level(build / 'keys-encore/keys' / name)
 
 
 if __name__ == '__main__':
