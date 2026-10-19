@@ -1,10 +1,11 @@
 """Builds Backline's sound packs from sources/ into dist/ (zips + packs.json), using backline/tools/make_pack.py.
 
-  python3 packs.py [--url https://github.com/gtemple/backline-sounds/releases/download/<tag>]
+  ~/.cache/bl/venv/bin/python packs.py [--url https://github.com/gtemple/backline-sounds/releases/download/<tag>]
 
 Sources (git-ignored, see CREDITS.md for where each comes from):
   sources/NAM_models-main  github.com/pelennor2170/NAM_models (GPL v3)
   sources/raw              the cab IR downloads; cabs.py turns them into sources/cabs/<name as in Backline>.wav
+  sources/keys             the keys sample sets (SFZ); keys_samples.py converts them
 Models get NAM loudness metadata (tools/loudness), so Backline levels them like the NAM plugin does.
 """
 import argparse
@@ -130,6 +131,15 @@ if __name__ == '__main__':
     all_cabs = sorted(p.stem for p in CABS.glob('*.wav')) if CABS.exists() else []
     stage(ROOT / 'build/guitar-essentials', ESSENTIALS, ESSENTIAL_CABS)
     stage(ROOT / 'build/guitar-encore', encore_names(), [c for c in all_cabs if c not in ESSENTIAL_CABS])
-    for pid in ('guitar-essentials', 'guitar-encore'):
-        e = build(ROOT / 'build' / pid, pid, 1, ROOT / 'dist', args.url, credit)
-        print(f"{pid}: {e['size'] / 1e6:.1f} MB, {len(e['contents'].get('Models', []))} amps, {len(e['contents'].get('Cabs', []))} cabs")
+    import keys_samples
+    keys_samples.stage(ROOT / 'build')
+    for pid in ('keys-essentials', 'keys-encore'):
+        shutil.copy(ROOT / 'CREDITS.md', ROOT / 'build' / pid / 'CREDITS.md')
+    credits = {
+        'keys-essentials': 'Concert Grand: Salamander Grand Piano V3 by Alexander Holm (CC BY 3.0).',
+        'keys-encore': 'Upright Piano KW (Gonzalo) and Old Piano FB (Piotr Barcz) via FreePats (CC0); '
+                       'Stage 73 Electric Piano: jRhodes3d by Jeff Learman (CC BY-NC 4.0).',
+    }
+    for pid in ('guitar-essentials', 'guitar-encore', 'keys-essentials', 'keys-encore'):
+        e = build(ROOT / 'build' / pid, pid, 1, ROOT / 'dist', args.url, credits.get(pid, credit))
+        print(f"{pid}: {e['size'] / 1e6:.1f} MB, " + ', '.join(f'{len(v)} {k}' for k, v in e['contents'].items()))

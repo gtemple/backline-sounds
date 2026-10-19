@@ -23,4 +23,19 @@ All converted to 48 kHz mono 24-bit and trimmed (cabs.py).
 - Bristol Two-Cab Blend, by mansardian (https://freesound.org/s/648392/). CC BY 4.0
   (https://creativecommons.org/licenses/by/4.0/).
 
+## Keys (Keys Essentials, Keys Encore)
+
+All converted by keys_samples.py: one sample per recorded note and velocity layer, cut once decayed 60 dB (at most 10 s),
+16-bit FLAC; release and loop data dropped.
+
+- Concert Grand: Salamander Grand Piano V3 by Alexander Holm, via FreePats
+  (https://freepats.zenvoid.org/Piano/acoustic-grand-piano.html). CC BY 3.0
+  (https://creativecommons.org/licenses/by/3.0/). 3 of its 16 velocity layers kept.
+- Upright Piano: Upright Piano KW, via FreePats (https://freepats.zenvoid.org/Piano/acoustic-grand-piano.html). CC0.
+- Honky-tonk Piano: Old Piano FB, recorded by Piotr Barcz, via FreePats
+  (https://freepats.zenvoid.org/Piano/honky-tonk-piano.html). CC0.
+- Stage 73 Electric Piano: jRhodes3d (mono, no crossfade) by Jeff Learman
+  (https://github.com/sfzinstruments/jlearman.jRhodes3d). CC BY-NC 4.0
+  (https://creativecommons.org/licenses/by-nc/4.0/): free to share, not for commercial use.
+
 tools/loudness_input.wav is from Neural Amp Modeler (https://github.com/sdatkinson/neural-amp-modeler, MIT).
