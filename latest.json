@@ -1,0 +1,7 @@
+{
+  "version": "0.3.0",
+  "mac": "0.3.0",
+  "date": "2026-10-20",
+  "url": "https://github.com/backline-music/backline-installs/releases/tag/v0.3.0",
+  "notes": ["Now on Mac too (Apple Silicon).", "New instrument icons, and the audio setup no longer freezes while it looks for your instrument."]
+}
