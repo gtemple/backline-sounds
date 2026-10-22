@@ -1,10 +1,10 @@
 {
-  "version": "0.4.0",
+  "version": "0.5.0",
   "mac": "0.4.0",
-  "date": "2026-10-21",
-  "url": "https://github.com/backline-music/backline-installs/releases/tag/v0.4.0",
+  "date": "2026-10-22",
+  "url": "https://github.com/backline-music/backline-installs/releases/tag/v0.5.0",
   "notes": [
-    "Bass is here: tab, fretboard and staff, a kick drum lane and a groove trainer.",
-    "Play a tab in your own tuning, keep your best takes, and Guitar Pro tabs line up better."
+    "Match the record: Backline finds the amps and cabs closest to each song's guitar, and the pedal board shows the tones it needs.",
+    "Keys: Backline can play the other hand for you, and the notes can show finger numbers."
   ]
 }
