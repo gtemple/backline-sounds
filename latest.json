@@ -1,10 +1,10 @@
 {
-  "version": "0.5.0",
+  "version": "0.6.0",
   "mac": "0.5.0",
-  "date": "2026-10-22",
-  "url": "https://github.com/backline-music/backline-installs/releases/tag/v0.5.0",
+  "date": "2026-10-30",
+  "url": "https://github.com/backline-music/backline-installs/releases/tag/v0.6.0",
   "notes": [
-    "Match the record: Backline finds the amps and cabs closest to each song's guitar, and the pedal board shows the tones it needs.",
-    "Keys: Backline can play the other hand for you, and the notes can show finger numbers."
+    "Vocals: sing along on a pitch lane with the lyrics, scored note by note.",
+    "A 3D stage for guitar and bass, plus Easy, Medium and Full for every part."
   ]
 }
